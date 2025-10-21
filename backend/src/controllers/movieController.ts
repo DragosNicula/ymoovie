@@ -1,4 +1,4 @@
-import { searchMoviesByName, searchMoviesById } from "../services/omdbService";
+import { searchMoviesByName, searchMoviesById } from "../services/omdbService.js";
 import { NextFunction, Request, Response } from "express";
 
 export const getMoviesByName = async (req: Request, res: Response, next: NextFunction) => {
