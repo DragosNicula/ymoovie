@@ -1,7 +1,7 @@
-import Link from "next/link";
-
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
+
+import Link from "next/link";
 
 type MovieDetails = {
   Title: string;
@@ -18,11 +18,11 @@ const FALLBACK_POSTER = "https://placehold.co/500x750?text=No+Poster";
 export default async function MoviePage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
-  const id = params.id;
-  const base = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:5000";
+  const { id } = await params;
 
+  const base = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:5000";
   const res = await fetch(`${base}/movies/${encodeURIComponent(id)}`, {
     cache: "no-store",
   });
@@ -51,7 +51,10 @@ export default async function MoviePage({
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-10 text-gray-400">
-      <Link href="/" className="mb-6 inline-block text-sm text-purple-500 hover:text-purple-400">
+      <Link
+        href="/"
+        className="mb-6 inline-block text-sm text-purple-500 hover:text-purple-400"
+      >
         ← Back to results
       </Link>
 
@@ -66,7 +69,6 @@ export default async function MoviePage({
             {movie.Year}{movie.Genre ? ` • ${movie.Genre}` : ""}
           </p>
           {movie.Plot && <p className="text-gray-400">{movie.Plot}</p>}
-
           <div className="pt-4 text-sm space-y-1">
             {movie.Director && (
               <p><span className="text-gray-500">Director:</span> {movie.Director}</p>
