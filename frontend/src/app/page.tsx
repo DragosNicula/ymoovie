@@ -5,7 +5,13 @@ import MovieCard from "./components/MovieCard";
 import MovieCardSkeleton from "./components/MovieCardSkeleton";
 import Navbar from './components/Navbar'
 
-type Movie = any;
+type Movie = {
+  id: string;
+  title: string;
+  year: string;
+  type: string;
+  poster: string;
+};
 
 export default function Home() {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -88,7 +94,7 @@ export default function Home() {
             ))}
 
           {!isFirstPageLoading &&
-            movies.map((m: any, i: number) => (
+            movies.map((m: Movie, i: number) => (
               <li key={m.id + "-" + i} className="border border-gray-700 rounded p-4">
                 <MovieCard
                   id={m.id}
