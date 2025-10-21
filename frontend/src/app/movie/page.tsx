@@ -1,7 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
+
+// oprește prerender-ul static pentru ruta /movie
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 type MovieDetails = {
   Title: string;
@@ -16,9 +20,18 @@ type MovieDetails = {
 const FALLBACK_POSTER = "https://placehold.co/500x750?text=No+Poster";
 
 export default function MoviePage() {
+  return (
+    <Suspense fallback={<div className="flex h-screen items-center justify-center text-gray-400">Loading…</div>}>
+      <MovieClient />
+    </Suspense>
+  );
+}
+
+function MovieClient() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const id = searchParams.get("id");
+
   const [movie, setMovie] = useState<MovieDetails | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -30,14 +43,14 @@ export default function MoviePage() {
       return;
     }
 
-    const fetchMovie = async () => {
+    (async () => {
       setLoading(true);
       setError(null);
       try {
         const base = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:5000";
         const res = await fetch(`${base}/movies/${id}`);
         if (!res.ok) throw new Error("Failed to load movie");
-        const payload = await res.json(); 
+        const payload = await res.json();
         setMovie(payload.data ?? null);
       } catch (e) {
         console.error(e);
@@ -45,9 +58,7 @@ export default function MoviePage() {
       } finally {
         setLoading(false);
       }
-    };
-
-    fetchMovie();
+    })();
   }, [id]);
 
   if (loading) {
