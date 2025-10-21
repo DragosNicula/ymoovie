@@ -1,4 +1,4 @@
-import { OMDB_API_KEY, OMDB_BASE_URL } from "../utils/config";
+import { OMDB_API_KEY, OMDB_BASE_URL } from "../utils/config.js";
 
 export async function searchMoviesByName(query: string, page = 1) {
     if (!query) {
