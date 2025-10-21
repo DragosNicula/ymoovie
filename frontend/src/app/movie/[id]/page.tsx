@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
@@ -49,9 +51,9 @@ export default async function MoviePage({
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-10 text-gray-400">
-      <a href="/" className="mb-6 inline-block text-sm text-purple-500 hover:text-purple-400">
+      <Link href="/" className="mb-6 inline-block text-sm text-purple-500 hover:text-purple-400">
         ← Back to results
-      </a>
+      </Link>
 
       <div className="flex flex-col md:flex-row gap-6">
         <div className="w-full md:w-1/3">

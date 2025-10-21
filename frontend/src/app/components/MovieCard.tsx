@@ -22,7 +22,7 @@ export default function MovieCard({ id, title, year, type, poster }: MovieCardPr
   const src = normalizePoster(poster);
 
   return (
-    <Link href={{ pathname: "/movie/[id]", query: { id } }} className="block">
+    <Link href={`/movie/${id}`} className="block">
       <article
         className="bg-gray-800 rounded-xl overflow-hidden shadow transition
            hover:shadow-lg hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-purple-500"
