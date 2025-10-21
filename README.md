@@ -36,11 +36,10 @@ It connects to the OMDb API to fetch movie data — with pagination, search, and
 
 ## 📁 Project Structure
 
-<img width="320" height="480" alt="image" src="https://github.com/user-attachments/assets/7e28d43c-bbf7-4331-8c1a-4532fddcfce8" />
+<img width="320" height="480" alt="image" src="https://github.com/user-attachments/assets/0bcd6019-2b97-484c-bc3c-3d47c3c032b3" />
+
  
 🧠 How It Works
  
-<img width="600" height="120" alt="image" src="https://github.com/user-attachments/assets/cb503354-ec58-49a6-99e1-b2bb7bda32a9" />
-
-## 📁 Project Structure
+<img width="600" height="120" alt="image" src="https://github.com/user-attachments/assets/f1866440-3331-4e23-acdf-55a32830b8ab" />
 
